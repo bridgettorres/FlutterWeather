@@ -4,16 +4,13 @@ import 'package:bloc_test/bloc_test.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_test/flutter_test.dart';
-//change this back
-import 'package:flutter_weather/settings/view/search_page.dart';
-import 'package:flutter_weather/settings/view/settings_page.dart';
-//
+import 'package:flutter_weather/helper/hydrated_bloc.dart';
+import 'package:flutter_weather/search/view/search_page.dart'; //changed this
+import 'package:flutter_weather/settings/view/settings_page.dart'; //changed this
 import 'package:flutter_weather/weather/weather.dart';
+import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:weather_repository/weather_repository.dart' hide Weather;
-
-import 'package:flutter_weather/helper/hydrated_bloc.dart';
-
 
 class MockWeatherRepository extends Mock implements WeatherRepository {}
 
@@ -98,8 +95,7 @@ void main() {
     });
 
     testWidgets('state is cached', (tester) async {
-      var hydratedStorage;
-      when<dynamic>(() => hydratedStorage.read('$WeatherCubit')).thenReturn(
+      when<dynamic>(() => HydratedBloc.storage.read('$WeatherCubit')).thenReturn(
         WeatherState(
           status: WeatherStatus.success,
           weather: weather,

@@ -1,4 +1,3 @@
-//here we are testing our API client to ensure that our API client handles both API calls correctly
 // ignore_for_file: prefer_const_constructors
 import 'package:http/http.dart' as http;
 import 'package:mocktail/mocktail.dart';
