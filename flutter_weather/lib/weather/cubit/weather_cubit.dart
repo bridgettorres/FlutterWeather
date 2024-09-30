@@ -1,5 +1,3 @@
-import 'package:bloc/bloc.dart';
-import 'package:meta/meta.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_weather/weather/weather.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
