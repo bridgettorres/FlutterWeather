@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_weather/background/bloc/background_bloc.dart';
 import 'package:flutter_weather/weather/weather.dart';
 
 class WeatherPopulated extends StatelessWidget {
@@ -45,6 +47,16 @@ class WeatherPopulated extends StatelessWidget {
                   ),
                   Text(
                     '''Last Updated at ${TimeOfDay.fromDateTime(weather.lastUpdated).format(context)}''',
+                  ),
+                  ElevatedButton(
+                    style: TextButton.styleFrom(
+                      foregroundColor: Colors.white,
+                      backgroundColor: Colors.pink,
+                    ),
+                    onPressed: () { 
+                      context.read<BackgroundBloc>().add(ToggleOccur());
+                    },
+                    child: Text('Mode'),
                   ),
                 ],
               ),
