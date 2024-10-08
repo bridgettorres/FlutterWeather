@@ -44,15 +44,17 @@ class WeatherAppView extends StatelessWidget {
     // final seedColor = context.select(
     //   (WeatherCubit cubit) => cubit.state.weather.toColor(context),
     // );
-    final seedColor = context.select(
+    /*final seedColor = context.select(
       (WeatherCubit cubit) => cubit.state.weather.toColor,
-    );
+    );*/
     //BlocBuilder listens to BackgroundBloc to determine the background color
     return BlocBuilder<BackgroundBloc, BackgroundState>(
       builder: (context, state) {
-        final BackgroundColor = (state is BackgroundDark)
-          ? Colors.black  //this is when in BackgroundDark
-          : Colors.white; //this is when in BackgroundLightState
+        final BackgroundColor = (state is BackgroundLight)
+          //? Colors.black  //this is when in BackgroundDark
+          ? Colors.white //this is when in BackgroundLightState
+          : const Color.fromARGB(255, 7, 10, 59);
+          //: Colors.white; //this is when in BackgroundLightState
 
         return MaterialApp(
           theme: ThemeData(
@@ -60,7 +62,7 @@ class WeatherAppView extends StatelessWidget {
               backgroundColor: Colors.transparent,
               elevation: 0,
             ),
-            colorScheme: ColorScheme.fromSeed(seedColor: seedColor),
+            //colorScheme: ColorScheme.fromSeed(seedColor: seedColor),
             scaffoldBackgroundColor: BackgroundColor,
             textTheme: ThemeData.light().textTheme,
             ),
@@ -71,11 +73,11 @@ class WeatherAppView extends StatelessWidget {
   }
 }
 
-extension on Weather {
+/*extension on Weather {
   Color get toColor {
     switch (condition) {
       case WeatherCondition.clear:
-        return const Color.fromARGB(255, 255, 253, 181);
+        return const Color.fromARGB(255, 234, 181, 255);
       case WeatherCondition.snowy:
         return Colors.lightBlueAccent;
       case WeatherCondition.cloudy:
@@ -86,7 +88,7 @@ extension on Weather {
         return Colors.cyan;
     }
   }
-}
+}*/
 
 // extension on Weather {
 //   Color toColor(BuildContext context) {

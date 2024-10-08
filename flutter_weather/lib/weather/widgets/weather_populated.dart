@@ -20,7 +20,7 @@ class WeatherPopulated extends StatelessWidget {
     final theme = Theme.of(context);
     return Stack(
       children: [
-        _WeatherBackground(),
+        //_WeatherBackground(),
         RefreshIndicator(
           onRefresh: onRefresh,
           child: Align(
@@ -101,7 +101,7 @@ extension on WeatherCondition {
   }
 }
 
-class _WeatherBackground extends StatelessWidget {
+/*class _WeatherBackground extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final color = Theme.of(context).colorScheme.primaryContainer;
@@ -139,7 +139,7 @@ extension on Color {
       blue + ((255 - blue) * p).round(),
     );
   }
-}
+}*/
 
 extension on Weather {
   String formattedTemperature(TemperatureUnits units) {
