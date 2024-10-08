@@ -51,10 +51,9 @@ class WeatherAppView extends StatelessWidget {
     return BlocBuilder<BackgroundBloc, BackgroundState>(
       builder: (context, state) {
         final BackgroundColor = (state is BackgroundLight)
-          //? Colors.black  //this is when in BackgroundDark
-          ? Colors.white //this is when in BackgroundLightState
-          : const Color.fromARGB(255, 7, 10, 59);
-          //: Colors.white; //this is when in BackgroundLightState
+
+          ? context.select((WeatherCubit cubit) => cubit.state.weather.toColor.brighten(50))//when the state is white
+          : context.select((WeatherCubit cubit) => cubit.state.weather.toColor);
 
         return MaterialApp(
           theme: ThemeData(
@@ -73,11 +72,11 @@ class WeatherAppView extends StatelessWidget {
   }
 }
 
-/*extension on Weather {
+extension on Weather {
   Color get toColor {
     switch (condition) {
       case WeatherCondition.clear:
-        return const Color.fromARGB(255, 234, 181, 255);
+        return Colors.yellow;
       case WeatherCondition.snowy:
         return Colors.lightBlueAccent;
       case WeatherCondition.cloudy:
@@ -88,7 +87,23 @@ class WeatherAppView extends StatelessWidget {
         return Colors.cyan;
     }
   }
-}*/
+}
+
+extension on Color {
+  Color brighten([int percent = 10]) {
+    assert(
+      1 <= percent && percent <= 100,
+      'percentage must be between 1 and 100',
+    );
+    final p = percent / 100;
+    return Color.fromARGB(
+      alpha,
+      red + ((255 - red) * p).round(),
+      green + ((255 - green) * p).round(),
+      blue + ((255 - blue) * p).round(),
+    );
+  }
+}
 
 // extension on Weather {
 //   Color toColor(BuildContext context) {
